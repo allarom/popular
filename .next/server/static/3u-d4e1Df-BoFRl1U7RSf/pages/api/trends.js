@@ -88,21 +88,32 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/api/trends.js":
-/*!*****************************!*\
-  !*** ./pages/api/trends.js ***!
-  \*****************************/
-/*! exports provided: default */
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("uaDO");
+
+
+/***/ }),
+
+/***/ "ldqP":
+/***/ (function(module, exports) {
+
+module.exports = require("google-trends-api");
+
+/***/ }),
+
+/***/ "uaDO":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var google_trends_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! google-trends-api */ "google-trends-api");
+/* harmony import */ var google_trends_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ldqP");
 /* harmony import */ var google_trends_api__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(google_trends_api__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ((req, res) => {
@@ -115,30 +126,6 @@ __webpack_require__.r(__webpack_exports__);
   });
 });
 
-/***/ }),
-
-/***/ 4:
-/*!***********************************!*\
-  !*** multi ./pages/api/trends.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! /Users/ar/projects/popular/pages/api/trends.js */"./pages/api/trends.js");
-
-
-/***/ }),
-
-/***/ "google-trends-api":
-/*!************************************!*\
-  !*** external "google-trends-api" ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("google-trends-api");
-
 /***/ })
 
 /******/ });
-//# sourceMappingURL=trends.js.map

@@ -88,38 +88,64 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/HomePage.jsx":
-/*!*********************************!*\
-  !*** ./components/HomePage.jsx ***!
-  \*********************************/
-/*! exports provided: default */
+/***/ "0bYB":
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("RNiq");
+
+
+/***/ }),
+
+/***/ "RNiq":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/ar/projects/popular/components/HomePage.jsx";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "getStaticProps", function() { return /* binding */ getStaticProps; });
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: external "isomorphic-unfetch"
+var external_isomorphic_unfetch_ = __webpack_require__("0bYB");
+var external_isomorphic_unfetch_default = /*#__PURE__*/__webpack_require__.n(external_isomorphic_unfetch_);
+
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
+// CONCATENATED MODULE: ./components/HomePage.jsx
+
+var __jsx = external_react_default.a.createElement;
 
 
 const HomePage = props => {
   let {
     0: windowsWidth,
     1: setWidth
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  } = Object(external_react_["useState"])(0);
   let {
     0: windowsHeight,
     1: setHeight
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  } = Object(external_react_["useState"])(0);
   let list = null;
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+  Object(external_react_["useEffect"])(() => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight); // Multiple Animated Circle - Get Canvas element by Id
 
@@ -204,51 +230,20 @@ const HomePage = props => {
 
     animate();
   });
-  return __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 112
-    },
-    __self: undefined
-  }, __jsx("canvas", {
+  return __jsx("div", null, __jsx("canvas", {
     id: "myCanvas",
     width: windowsWidth,
     height: windowsHeight,
     style: {
       border: '1px solid black'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 113
-    },
-    __self: undefined
+    }
   }));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (HomePage);
+/* harmony default export */ var components_HomePage = (HomePage);
+// CONCATENATED MODULE: ./pages/index.js
 
-/***/ }),
-
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
-/*! exports provided: getStaticProps, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStaticProps", function() { return getStaticProps; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_HomePage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/HomePage */ "./components/HomePage.jsx");
-var _jsxFileName = "/Users/ar/projects/popular/pages/index.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var pages_jsx = external_react_default.a.createElement;
 
 
  // import '../components/HomePage.css'
@@ -257,50 +252,16 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 function Home({
   searchesMapped
 }) {
-  return __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
-  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    },
-    __self: this
-  }, __jsx("title", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    },
-    __self: this
-  }, "My page title"), __jsx("meta", {
+  return pages_jsx("div", null, pages_jsx(head_default.a, null, pages_jsx("title", null, "My page title"), pages_jsx("meta", {
     name: "viewport",
-    content: "initial-scale=1.0, width=device-width",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    },
-    __self: this
-  })), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }, __jsx(_components_HomePage__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    props: searchesMapped,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
+    content: "initial-scale=1.0, width=device-width"
+  })), pages_jsx("div", null, pages_jsx(components_HomePage, {
+    props: searchesMapped
   })));
 }
 
 async function getStaticProps() {
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()('http://localhost:3000/api/trends');
+  const res = await external_isomorphic_unfetch_default()('http://localhost:3000/api/trends');
   const json = await res.json();
   const searches = json.default.trendingSearchesDays[0].trendingSearches;
   const searchesMapped = searches.map(el => {
@@ -315,54 +276,22 @@ async function getStaticProps() {
     }
   };
 }
-/* harmony default export */ __webpack_exports__["default"] = (Home);
+/* harmony default export */ var pages = __webpack_exports__["default"] = (Home);
 
 /***/ }),
 
-/***/ 3:
-/*!******************************!*\
-  !*** multi ./pages/index.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! /Users/ar/projects/popular/pages/index.js */"./pages/index.js");
-
-
-/***/ }),
-
-/***/ "isomorphic-unfetch":
-/*!*************************************!*\
-  !*** external "isomorphic-unfetch" ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-unfetch");
-
-/***/ }),
-
-/***/ "next/head":
-/*!****************************!*\
-  !*** external "next/head" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/head");
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/*! no static exports found */
+/***/ "cDcd":
 /***/ (function(module, exports) {
 
 module.exports = require("react");
 
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
+
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.js.map
