@@ -19,22 +19,27 @@ function Home({ searchesMapped }) {
 }
 
 export async function getStaticProps() {
-  const dev = process.env.NODE_ENV !== 'production';
-  const server = dev ? 'http://localhost:3000' : 'https://popular.now.sh';
-
-  const res = await fetch(`${server}/api/trends`)
-  console.log("res", res)
-  const json = await res.json()
-  const searches = json.default.trendingSearchesDays[0].trendingSearches
-  const searchesMapped = searches.map((el) => {
-    const search = {}
-    search.title = el.title.query
-    search.traffic = el.formattedTraffic
-    return search
-  })
-
-  return { props: { searchesMapped },
+  try {
+    const dev = process.env.NODE_ENV !== 'production';
+    const server = dev ? 'http://localhost:3000' : 'https://popular.now.sh';
+  
+    const res = await fetch(`${server}/api/trends`)
+    console.log("res", res)
+    const json = await res.json()
+    const searches = json.default.trendingSearchesDays[0].trendingSearches
+    const searchesMapped = searches.map((el) => {
+      const search = {}
+      search.title = el.title.query
+      search.traffic = el.formattedTraffic
+      return search
+    })
+  
+    return { props: { searchesMapped },
+    }
+  } catch (err) {
+    console.log(err)
   }
+
 }
 
 export default Home
