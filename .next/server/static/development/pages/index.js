@@ -299,12 +299,10 @@ function Home({
   })));
 }
 
-async function getStaticProps({
-  req
-}) {
-  const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
-  console.log("h", "development");
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()("http://localhost:3000/api/trends");
+async function getStaticProps() {
+  const dev = true;
+  const server = dev ? 'http://localhost:3000' : 'https://popular.now.sh';
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`${server}/api/trends`);
   const json = await res.json();
   const searches = json.default.trendingSearchesDays[0].trendingSearches;
   const searchesMapped = searches.map(el => {

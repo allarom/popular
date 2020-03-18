@@ -1,6 +1,5 @@
 import googleTrends from 'google-trends-api'
-
-export default (req, res) => {
+module.exports = (req, res) => {
   googleTrends.dailyTrends({ geo: 'CH' })
   .then(function(results){
     res.send(results)
@@ -8,5 +7,4 @@ export default (req, res) => {
   .catch(function(err){
     console.error('Oh no there was an error', err);
   });
-
 }
