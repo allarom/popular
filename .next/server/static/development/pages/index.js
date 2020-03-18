@@ -302,7 +302,9 @@ function Home({
 async function getStaticProps() {
   const dev = true;
   const server = dev ? 'http://localhost:3000' : 'https://popular.now.sh';
+  console.log("server", server);
   const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`${server}/api/trends`);
+  console.log("res", res);
   const json = await res.json();
   const searches = json.default.trendingSearchesDays[0].trendingSearches;
   const searchesMapped = searches.map(el => {
