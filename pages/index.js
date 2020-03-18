@@ -20,7 +20,7 @@ function Home({ searchesMapped }) {
 
 export async function getStaticProps() {
   const dev = process.env.NODE_ENV !== 'production';
-  const server = dev ? 'popular.now.sh' : 'popular.now.sh';
+  const server = dev ? 'http://localhost:3000' : 'https://popular.now.sh';
 
   const res = await fetch(`${server}/api/trends`)
   console.log("res", res)
