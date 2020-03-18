@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -300,7 +300,9 @@ function Home({
 }
 
 async function getStaticProps() {
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()('https://popular.now.sh/api/trends');
+  const dev = true;
+  const server = dev ? 'http://localhost:3000' : 'http://localhost:3000';
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`${server}/api/trends`);
   console.log("res", res);
   const json = await res.json();
   const searches = json.default.trendingSearchesDays[0].trendingSearches;
@@ -320,7 +322,7 @@ async function getStaticProps() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

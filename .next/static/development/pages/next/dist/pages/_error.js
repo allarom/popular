@@ -1,142 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
-
-/***/ "./components/HomePage.jsx":
-/*!*********************************!*\
-  !*** ./components/HomePage.jsx ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/ar/projects/popular/components/HomePage.jsx";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-var HomePage = function HomePage(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
-      windowsWidth = _useState[0],
-      setWidth = _useState[1];
-
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
-      windowsHeight = _useState2[0],
-      setHeight = _useState2[1];
-
-  var list = null;
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight); // Multiple Animated Circle - Get Canvas element by Id
-
-    var canvas = document.getElementById("myCanvas"); // Set Canvas dimensions
-
-    canvas.width = windowsWidth;
-    canvas.height = windowsHeight; // Get drawing context
-
-    var ctx = canvas.getContext('2d'); // The Circle class
-
-    function Circle(x, y, dx, dy, radius, title, traffic) {
-      this.x = x;
-      this.y = y;
-      this.dx = dx;
-      this.dy = dy;
-      this.title = title;
-      this.traffic = traffic;
-      this.radius = radius;
-      var allTraffic = props.props.map(function (el) {
-        return el.traffic.match(/\d+/)[0];
-      });
-      this.highest = allTraffic[0];
-      var lowest = allTraffic[allTraffic.length - 1];
-
-      this.random_rgba = function () {
-        var o = Math.round,
-            r = Math.random,
-            s = 255;
-        return 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-      };
-
-      var color = this.random_rgba();
-
-      this.draw = function () {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = "rgba(255,0,0,".concat(this.traffic / this.highest, ")");
-        ctx.fill();
-        ctx.fillStyle = "black";
-        ctx.font = "16px Verdana";
-        ctx.textAlign = 'center';
-        ctx.fillText(this.title, this.x, this.y);
-      };
-
-      this.update = function () {
-        if (this.x + this.radius > windowsWidth || this.x - this.radius < 0) {
-          this.dx = -this.dx;
-        }
-
-        if (this.y + this.radius > windowsHeight || this.y - this.radius < 0) {
-          this.dy = -this.dy;
-        }
-
-        this.x += this.dx;
-        this.y += this.dy;
-        this.draw();
-      };
-    }
-
-    var circles = []; // Radius
-
-    var radius = 70;
-
-    for (var i = 0; i < props.props.length; i++) {
-      // Starting Position
-      var x = Math.random() * (windowsWidth - radius * 2) + radius;
-      var y = Math.random() * (windowsHeight - radius * 2) + radius; // Speed in x and y direction
-
-      var dx = (Math.random() - 0.5) * 2;
-      var dy = (Math.random() - 0.5) * 2;
-      var title = props.props[i].title;
-      var traffic = props.props[i].traffic.match(/\d+/)[0];
-      circles.push(new Circle(x, y, dx, dy, radius, title, traffic));
-    }
-
-    function animate() {
-      requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, windowsWidth, windowsHeight);
-
-      for (var r = 0; r < props.props.length; r++) {
-        circles[r].update();
-      }
-    }
-
-    animate();
-  });
-  return __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 112
-    },
-    __self: this
-  }, __jsx("canvas", {
-    id: "myCanvas",
-    width: windowsWidth,
-    height: windowsHeight,
-    style: {
-      border: '1px solid black'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 113
-    },
-    __self: this
-  }));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (HomePage);
-
-/***/ }),
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/next/dist/pages/_error.js"],{
 
 /***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
 /*!******************************************************************!*\
@@ -268,6 +130,23 @@ module.exports = _inherits;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
@@ -389,21 +268,21 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js!./":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js ***!
-  \******************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fnext%2Fdist%2Fpages%2F_error&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fnode_modules%2Fnext%2Fdist%2Fpages%2F_error.js!./":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fnext%2Fdist%2Fpages%2F_error&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fnode_modules%2Fnext%2Fdist%2Fpages%2F_error.js ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/", function() {
-      var mod = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/next/dist/pages/_error", function() {
+      var mod = __webpack_require__(/*! ./node_modules/next/dist/pages/_error.js */ "./node_modules/next/dist/pages/_error.js")
       if(true) {
-        module.hot.accept(/*! ./pages/index.js */ "./pages/index.js", function() {
-          if(!next.router.components["/"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
-          next.router.update("/", updatedPage)
+        module.hot.accept(/*! ./node_modules/next/dist/pages/_error.js */ "./node_modules/next/dist/pages/_error.js", function() {
+          if(!next.router.components["/next/dist/pages/_error"]) return
+          var updatedPage = __webpack_require__(/*! ./node_modules/next/dist/pages/_error.js */ "./node_modules/next/dist/pages/_error.js")
+          next.router.update("/next/dist/pages/_error", updatedPage)
         })
       }
       return mod
@@ -800,6 +679,130 @@ exports["default"] = function () {
 
 /***/ }),
 
+/***/ "./node_modules/next/dist/pages/_error.js":
+/*!************************************************!*\
+  !*** ./node_modules/next/dist/pages/_error.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _classCallCheck = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+
+var _createClass = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+
+var _possibleConstructorReturn = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+
+var _getPrototypeOf = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+
+var _inherits = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _head = _interopRequireDefault(__webpack_require__(/*! ../next-server/lib/head */ "./node_modules/next/dist/next-server/lib/head.js"));
+
+var statusCodes = {
+  400: 'Bad Request',
+  404: 'This page could not be found',
+  405: 'Method Not Allowed',
+  500: 'Internal Server Error'
+};
+/**
+* `Error` component used for handling errors.
+*/
+
+var Error = /*#__PURE__*/function (_react$default$Compon) {
+  _inherits(Error, _react$default$Compon);
+
+  function Error() {
+    _classCallCheck(this, Error);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Error).apply(this, arguments));
+  }
+
+  _createClass(Error, [{
+    key: "render",
+    value: function render() {
+      var statusCode = this.props.statusCode;
+      var title = this.props.title || statusCodes[statusCode] || 'An unexpected error has occurred';
+      return _react["default"].createElement("div", {
+        style: styles.error
+      }, _react["default"].createElement(_head["default"], null, _react["default"].createElement("title", null, statusCode, ": ", title)), _react["default"].createElement("div", null, _react["default"].createElement("style", {
+        dangerouslySetInnerHTML: {
+          __html: 'body { margin: 0 }'
+        }
+      }), statusCode ? _react["default"].createElement("h1", {
+        style: styles.h1
+      }, statusCode) : null, _react["default"].createElement("div", {
+        style: styles.desc
+      }, _react["default"].createElement("h2", {
+        style: styles.h2
+      }, title, "."))));
+    }
+  }], [{
+    key: "getInitialProps",
+    value: function getInitialProps(_ref) {
+      var res = _ref.res,
+          err = _ref.err;
+      var statusCode = res && res.statusCode ? res.statusCode : err ? err.statusCode : 404;
+      return {
+        statusCode: statusCode
+      };
+    }
+  }]);
+
+  return Error;
+}(_react["default"].Component);
+
+exports["default"] = Error;
+Error.displayName = 'ErrorPage';
+var styles = {
+  error: {
+    color: '#000',
+    background: '#fff',
+    fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif',
+    height: '100vh',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  desc: {
+    display: 'inline-block',
+    textAlign: 'left',
+    lineHeight: '49px',
+    height: '49px',
+    verticalAlign: 'middle'
+  },
+  h1: {
+    display: 'inline-block',
+    borderRight: '1px solid rgba(0, 0, 0,.3)',
+    margin: 0,
+    marginRight: '20px',
+    padding: '10px 23px 10px 0',
+    fontSize: '24px',
+    fontWeight: 500,
+    verticalAlign: 'top'
+  },
+  h2: {
+    fontSize: '14px',
+    fontWeight: 'normal',
+    lineHeight: 'inherit',
+    margin: 0,
+    padding: 0
+  }
+};
+
+/***/ }),
+
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
   !*** delegated ./node_modules/react/index.js from dll-reference dll_82519ec661270f7f484f ***!
@@ -811,85 +814,14 @@ module.exports = (__webpack_require__(/*! dll-reference dll_82519ec661270f7f484f
 
 /***/ }),
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
-/*! exports provided: __N_SSG, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__N_SSG", function() { return __N_SSG; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_HomePage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/HomePage */ "./components/HomePage.jsx");
-var _jsxFileName = "/Users/ar/projects/popular/pages/index.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
- // import '../components/HomePage.css'
-// import particles from 'particles.js'
-
-function Home(_ref) {
-  var searchesMapped = _ref.searchesMapped;
-  return __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
-  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    },
-    __self: this
-  }, __jsx("title", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    },
-    __self: this
-  }, "My page title"), __jsx("meta", {
-    name: "viewport",
-    content: "initial-scale=1.0, width=device-width",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    },
-    __self: this
-  })), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }, __jsx(_components_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    props: searchesMapped,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  })));
-}
-
-var __N_SSG = true;
-/* harmony default export */ __webpack_exports__["default"] = (Home);
-
-/***/ }),
-
-/***/ 1:
-/*!**********************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js ***!
-  \**********************************************************************************************************************/
+/***/ 2:
+/*!********************************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fnext%2Fdist%2Fpages%2F_error&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fnode_modules%2Fnext%2Fdist%2Fpages%2F_error.js ***!
+  \********************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fnext%2Fdist%2Fpages%2F_error&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fnode_modules%2Fnext%2Fdist%2Fpages%2F_error.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fnext%2Fdist%2Fpages%2F_error&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fnode_modules%2Fnext%2Fdist%2Fpages%2F_error.js!./");
 
 
 /***/ }),
@@ -905,5 +837,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=index.js.map
+},[[2,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=_error.js.map

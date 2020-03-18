@@ -19,7 +19,10 @@ function Home({ searchesMapped }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://popular.now.sh/api/trends')
+  const dev = process.env.NODE_ENV !== 'production';
+  const server = dev ? 'http://localhost:3000' : 'http://localhost:3000';
+
+  const res = await fetch(`${server}/api/trends`)
   console.log("res", res)
   const json = await res.json()
   const searches = json.default.trendingSearchesDays[0].trendingSearches
