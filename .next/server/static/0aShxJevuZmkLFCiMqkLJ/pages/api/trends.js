@@ -88,22 +88,33 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/api/trends.js":
-/*!*****************************!*\
-  !*** ./pages/api/trends.js ***!
-  \*****************************/
-/*! no static exports found */
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("uaDO");
+
+
+/***/ }),
+
+/***/ "ldqP":
+/***/ (function(module, exports) {
+
+module.exports = require("google-trends-api");
+
+/***/ }),
+
+/***/ "uaDO":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _googleTrendsApi = _interopRequireDefault(__webpack_require__(/*! google-trends-api */ "google-trends-api"));
+var _googleTrendsApi = _interopRequireDefault(__webpack_require__("ldqP"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -117,30 +128,6 @@ module.exports = (req, res) => {
   });
 };
 
-/***/ }),
-
-/***/ 5:
-/*!***********************************!*\
-  !*** multi ./pages/api/trends.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! /Users/ar/projects/popular/pages/api/trends.js */"./pages/api/trends.js");
-
-
-/***/ }),
-
-/***/ "google-trends-api":
-/*!************************************!*\
-  !*** external "google-trends-api" ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("google-trends-api");
-
 /***/ })
 
 /******/ });
-//# sourceMappingURL=trends.js.map
