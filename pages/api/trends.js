@@ -2,7 +2,7 @@ import googleTrends from 'google-trends-api'
 import Cors from 'cors'
 
 
-module.exports = (req, res) => {
+module.exports = async(req, res) => {
   const cors = Cors({
     methods: ['GET', 'HEAD', 'POST'],
   })
