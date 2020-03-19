@@ -9,10 +9,7 @@ module.exports = (req, res) => {
 
   googleTrends.dailyTrends({ geo: 'CH' })
   .then(function(results){
-    console.log("req  trends", req)
-    console.log("res  trends", res)
-    console.log("results  trends", results)
-    res.status(200).send(results)
+    res.status(200).end(results)
   })
   .catch(function(err){
     console.error('Oh no there was an error', err);

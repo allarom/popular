@@ -29,7 +29,7 @@ function Circle( x, y, dx, dy, radius, title, traffic ) {
   this.title = title
   this.traffic = traffic
   this.radius = radius;
-  const allTraffic = props.props.map( el => el.traffic.match(/\d+/)[0] );
+  const allTraffic = props.props?.map( el => el.traffic.match(/\d+/)[0] );
   this.highest = allTraffic[0]
   const lowest = allTraffic[allTraffic.length - 1]
  
@@ -79,7 +79,7 @@ var circles = [];
 // Radius
 var radius = 70;
 
-for( var i = 0; i < props.props.length; i++ )  {
+for( var i = 0; i < props.props?.length; i++ )  {
 	
 	// Starting Position
 	var x = Math.random() * ( windowsWidth - radius * 2 ) + radius;
