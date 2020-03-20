@@ -9,8 +9,11 @@ module.exports = (req, res) => {
   console.log("req trends", req)
   console.log("res trends", res)
 
-    const { name = 'World' } = req.query
-    res.status(200).send(`Hello ${name}!`)
+    res.json({
+      body: req.body,
+      query: req.query,
+      cookies: req.cookies
+    })
 
   // googleTrends.dailyTrends({ geo: 'CH' })
   // .then(function(results){
