@@ -38,8 +38,6 @@ var HomePage = function HomePage(props) {
     var ctx = canvas.getContext('2d'); // The Circle class
 
     function Circle(x, y, dx, dy, radius, title, traffic) {
-      var _props$props;
-
       this.x = x;
       this.y = y;
       this.dx = dx;
@@ -47,7 +45,7 @@ var HomePage = function HomePage(props) {
       this.title = title;
       this.traffic = traffic;
       this.radius = radius;
-      var allTraffic = (_props$props = props.props) === null || _props$props === void 0 ? void 0 : _props$props.map(function (el) {
+      var allTraffic = props.props.map(function (el) {
         return el.traffic.match(/\d+/)[0];
       });
       this.highest = allTraffic[0];
@@ -92,9 +90,7 @@ var HomePage = function HomePage(props) {
 
     var radius = 70;
 
-    for (var i = 0; i < ((_props$props2 = props.props) === null || _props$props2 === void 0 ? void 0 : _props$props2.length); i++) {
-      var _props$props2;
-
+    for (var i = 0; i < props.props.length; i++) {
       // Starting Position
       var x = Math.random() * (windowsWidth - radius * 2) + radius;
       var y = Math.random() * (windowsHeight - radius * 2) + radius; // Speed in x and y direction
@@ -886,7 +882,7 @@ var __N_SSG = true;
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************/
@@ -909,5 +905,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

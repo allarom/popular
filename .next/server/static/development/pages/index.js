@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -131,8 +131,6 @@ const HomePage = props => {
     var ctx = canvas.getContext('2d'); // The Circle class
 
     function Circle(x, y, dx, dy, radius, title, traffic) {
-      var _props$props;
-
       this.x = x;
       this.y = y;
       this.dx = dx;
@@ -140,7 +138,7 @@ const HomePage = props => {
       this.title = title;
       this.traffic = traffic;
       this.radius = radius;
-      const allTraffic = (_props$props = props.props) === null || _props$props === void 0 ? void 0 : _props$props.map(el => el.traffic.match(/\d+/)[0]);
+      const allTraffic = props.props.map(el => el.traffic.match(/\d+/)[0]);
       this.highest = allTraffic[0];
       const lowest = allTraffic[allTraffic.length - 1];
 
@@ -183,9 +181,7 @@ const HomePage = props => {
 
     var radius = 70;
 
-    for (var i = 0; i < ((_props$props2 = props.props) === null || _props$props2 === void 0 ? void 0 : _props$props2.length); i++) {
-      var _props$props2;
-
+    for (var i = 0; i < props.props.length; i++) {
       // Starting Position
       var x = Math.random() * (windowsWidth - radius * 2) + radius;
       var y = Math.random() * (windowsHeight - radius * 2) + radius; // Speed in x and y direction
@@ -306,7 +302,7 @@ function Home({
 async function getStaticProps() {
   try {
     const dev = true;
-    const server = dev ? 'http://localhost:3000' : 'https://popular.now.sh';
+    const server = dev ? 'http://localhost:3001' : 'https://popular.now.sh';
     const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`${server}/api/trends`);
     const json = await (res === null || res === void 0 ? void 0 : res.json());
     const searches = json.default.trendingSearchesDays[0].trendingSearches;
@@ -329,7 +325,7 @@ async function getStaticProps() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
