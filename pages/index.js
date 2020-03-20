@@ -18,7 +18,7 @@ function Home({ searchesMapped }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const dev = process.env.NODE_ENV !== 'production';
     const server = dev ? 'http://localhost:3001' : 'https://popular.now.sh';

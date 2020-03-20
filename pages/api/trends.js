@@ -8,16 +8,16 @@ module.exports = (req, res) => {
   console.log("req trends", req)
   console.log("res trends", res)
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify({ name: 'John Doe' }))
 
-  // googleTrends.dailyTrends({ geo: 'CH' })
-  // .then(function(results){
-  //   res.status(200).end(results)
-  // })
-  // .catch(function(err){
-  //   console.error('Oh no there was an error', err);
-  // });
+
+
+  googleTrends.dailyTrends({ geo: 'CH' })
+  .then(function(results){
+    res.setHeader('Content-Type', 'application/json')
+    res.status(200).end(results)
+  })
+  .catch(function(err){
+    console.error('Oh no there was an error', err);
+  });
 
 }
