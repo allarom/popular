@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -113,11 +113,11 @@ const HomePage = props => {
   let {
     0: windowsWidth,
     1: setWidth
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   let {
     0: windowsHeight,
     1: setHeight
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   let list = null;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     setWidth(window.innerWidth);
@@ -130,7 +130,7 @@ const HomePage = props => {
 
     var ctx = canvas.getContext('2d'); // The Circle class
 
-    function Circle(x, y, dx, dy, radius, title, traffic) {
+    function Circle(x, y, dx, dy, radius, title, traffic, related) {
       this.x = x;
       this.y = y;
       this.dx = dx;
@@ -138,6 +138,7 @@ const HomePage = props => {
       this.title = title;
       this.traffic = traffic;
       this.radius = radius;
+      this.related = related;
       const allTraffic = props.props.map(el => el.traffic.match(/\d+/)[0]);
       this.highest = allTraffic[0];
       const lowest = allTraffic[allTraffic.length - 1];
@@ -159,7 +160,7 @@ const HomePage = props => {
         ctx.fillStyle = "black";
         ctx.font = "16px Verdana";
         ctx.textAlign = 'center';
-        ctx.fillText(this.title, this.x, this.y);
+        ctx.fillText(this.title, this.x, this.y); // ctx.fillText(this.related,this.x, this.y + 20);
       };
 
       this.update = function () {
@@ -188,9 +189,10 @@ const HomePage = props => {
 
       var dx = (Math.random() - 0.5) * 2;
       var dy = (Math.random() - 0.5) * 2;
+      var related = props.props[i].relatedQueries ? props.props[i].relatedQueries : null;
       var title = props.props[i].title;
       var traffic = props.props[i].traffic.match(/\d+/)[0];
-      circles.push(new Circle(x, y, dx, dy, radius, title, traffic));
+      circles.push(new Circle(x, y, dx, dy, radius, title, traffic, related));
     }
 
     function animate() {
@@ -207,19 +209,16 @@ const HomePage = props => {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 112
+      lineNumber: 108
     },
     __self: undefined
   }, __jsx("canvas", {
     id: "myCanvas",
     width: windowsWidth,
     height: windowsHeight,
-    style: {
-      border: '1px solid black'
-    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 113
+      lineNumber: 109
     },
     __self: undefined
   }));
@@ -251,8 +250,7 @@ var _jsxFileName = "/Users/ar/projects/popular/pages/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
- // import '../components/HomePage.css'
-// import particles from 'particles.js'
+
 
 function Home({
   searchesMapped
@@ -260,40 +258,32 @@ function Home({
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 7
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 8
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 9
     },
     __self: this
-  }, "My page title"), __jsx("meta", {
-    name: "viewport",
-    content: "initial-scale=1.0, width=device-width",
+  }, "My page title")), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 12
-    },
-    __self: this
-  })), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
     },
     __self: this
   }, __jsx(_components_HomePage__WEBPACK_IMPORTED_MODULE_3__["default"], {
     props: searchesMapped,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     },
     __self: this
   })));
@@ -303,14 +293,13 @@ async function getServerSideProps() {
   try {
     const dev = true;
     const server = dev ? 'http://localhost:3001' : 'https://popular.now.sh';
-    console.log("server index", server);
     const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`${server}/api/trends`);
-    console.log("res index", res);
     const json = await res.json();
     const searches = json.default.trendingSearchesDays[0].trendingSearches;
     const searchesMapped = searches.map(el => {
       const search = {};
       search.title = el.title.query;
+      search.relatedQueries = el.relatedQueries ? el.relatedQueries.map(el => el.query) : [];
       search.traffic = el.formattedTraffic;
       return search;
     });
@@ -327,7 +316,7 @@ async function getServerSideProps() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

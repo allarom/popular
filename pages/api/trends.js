@@ -5,11 +5,6 @@ module.exports = (req, res) => {
   // const cors = Cors({
   //   methods: ['GET', 'HEAD', 'POST'],
   // })
-  console.log("req trends", req)
-  console.log("res trends", res)
-
-
-
 
   googleTrends.dailyTrends({ geo: 'CH' })
   .then(function(results){

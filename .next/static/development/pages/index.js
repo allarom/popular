@@ -17,11 +17,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var HomePage = function HomePage(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       windowsWidth = _useState[0],
       setWidth = _useState[1];
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       windowsHeight = _useState2[0],
       setHeight = _useState2[1];
 
@@ -37,7 +37,7 @@ var HomePage = function HomePage(props) {
 
     var ctx = canvas.getContext('2d'); // The Circle class
 
-    function Circle(x, y, dx, dy, radius, title, traffic) {
+    function Circle(x, y, dx, dy, radius, title, traffic, related) {
       this.x = x;
       this.y = y;
       this.dx = dx;
@@ -45,6 +45,7 @@ var HomePage = function HomePage(props) {
       this.title = title;
       this.traffic = traffic;
       this.radius = radius;
+      this.related = related;
       var allTraffic = props.props.map(function (el) {
         return el.traffic.match(/\d+/)[0];
       });
@@ -68,7 +69,7 @@ var HomePage = function HomePage(props) {
         ctx.fillStyle = "black";
         ctx.font = "16px Verdana";
         ctx.textAlign = 'center';
-        ctx.fillText(this.title, this.x, this.y);
+        ctx.fillText(this.title, this.x, this.y); // ctx.fillText(this.related,this.x, this.y + 20);
       };
 
       this.update = function () {
@@ -97,9 +98,10 @@ var HomePage = function HomePage(props) {
 
       var dx = (Math.random() - 0.5) * 2;
       var dy = (Math.random() - 0.5) * 2;
+      var related = props.props[i].relatedQueries ? props.props[i].relatedQueries : null;
       var title = props.props[i].title;
       var traffic = props.props[i].traffic.match(/\d+/)[0];
-      circles.push(new Circle(x, y, dx, dy, radius, title, traffic));
+      circles.push(new Circle(x, y, dx, dy, radius, title, traffic, related));
     }
 
     function animate() {
@@ -116,19 +118,16 @@ var HomePage = function HomePage(props) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 112
+      lineNumber: 108
     },
     __self: this
   }, __jsx("canvas", {
     id: "myCanvas",
     width: windowsWidth,
     height: windowsHeight,
-    style: {
-      border: '1px solid black'
-    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 113
+      lineNumber: 109
     },
     __self: this
   }));
@@ -830,48 +829,39 @@ var _jsxFileName = "/Users/ar/projects/popular/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
- // import '../components/HomePage.css'
-// import particles from 'particles.js'
+
 
 function Home(_ref) {
   var searchesMapped = _ref.searchesMapped;
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 7
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 8
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 9
     },
     __self: this
-  }, "My page title"), __jsx("meta", {
-    name: "viewport",
-    content: "initial-scale=1.0, width=device-width",
+  }, "My page title")), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 12
-    },
-    __self: this
-  })), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
     },
     __self: this
   }, __jsx(_components_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"], {
     props: searchesMapped,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     },
     __self: this
   })));
@@ -882,7 +872,7 @@ var __N_SSP = true;
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************/
@@ -905,5 +895,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

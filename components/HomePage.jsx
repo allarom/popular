@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
 
 const HomePage = (props) => {
-  let [windowsWidth, setWidth] = useState(0)
-  let [windowsHeight, setHeight] = useState(0)
+  let [windowsWidth, setWidth] = useState(null)
+  let [windowsHeight, setHeight] = useState(null)
   let list = null
 
 useEffect(() => {
@@ -20,7 +20,7 @@ canvas.height  = windowsHeight;
 // Get drawing context
 var ctx = canvas.getContext( '2d' );
 // The Circle class
-function Circle( x, y, dx, dy, radius, title, traffic ) {
+function Circle( x, y, dx, dy, radius, title, traffic, related ) {
 
 	this.x 	= x;
 	this.y 	= y;
@@ -28,7 +28,8 @@ function Circle( x, y, dx, dy, radius, title, traffic ) {
   this.dy = dy;
   this.title = title
   this.traffic = traffic
-  this.radius = radius;
+	this.radius = radius;
+	this.related = related;
   const allTraffic = props.props.map( el => el.traffic.match(/\d+/)[0] );
   this.highest = allTraffic[0]
   const lowest = allTraffic[allTraffic.length - 1]
@@ -51,19 +52,17 @@ var color = this.random_rgba();
     ctx.fillStyle = "black";
     ctx.font = "16px Verdana";
     ctx.textAlign = 'center';
-    ctx.fillText(this.title,this.x, this.y);
+		ctx.fillText(this.title,this.x, this.y);
+		// ctx.fillText(this.related,this.x, this.y + 20);
 
 	}
 
 	this.update = function() {
-
 		if( this.x + this.radius > windowsWidth || this.x - this.radius < 0 ) {
-
 			this.dx = -this.dx;
 		}
 
 		if( this.y + this.radius > windowsHeight || this.y - this.radius < 0 ) {
-
 			this.dy = -this.dy;
 		}
 
@@ -86,21 +85,18 @@ for( var i = 0; i < props.props.length; i++ )  {
 	var y = Math.random() * ( windowsHeight - radius * 2) + radius;
 
 	// Speed in x and y direction
-  	var dx = ( Math.random() - 0.5 ) * 2;
-  	var dy = ( Math.random() - 0.5 ) * 2;
+  var dx = ( Math.random() - 0.5 ) * 2;
+	var dy = ( Math.random() - 0.5 ) * 2;
+	var related = props.props[i].relatedQueries ?  props.props[i].relatedQueries : null
   var title = props.props[i].title
   var traffic = props.props[i].traffic.match(/\d+/)[0];
-	circles.push( new Circle( x, y, dx, dy, radius, title, traffic) );
+	circles.push( new Circle( x, y, dx, dy, radius, title, traffic, related) );
 }
 
 function animate() {
-  
 	requestAnimationFrame( animate );
-
 	ctx.clearRect( 0, 0, windowsWidth, windowsHeight );
-
 	for( var r = 0; r < props.props.length; r++ ) {
-
 		circles[ r ].update();
 	}
 }
@@ -110,7 +106,7 @@ animate();
 
 return (
   <div>
-    <canvas id="myCanvas" width={windowsWidth} height={windowsHeight} style={{border: '1px solid black' }} >
+    <canvas id="myCanvas" width={windowsWidth} height={windowsHeight} >
     </canvas>
   </div>
 
