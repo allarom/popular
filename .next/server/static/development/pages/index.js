@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -159,9 +159,10 @@ const Page = props => {
       node.exit().remove();
       var nodeEnter = node.enter().append("g").attr("class", "node").on("click", click).call(force.drag);
       nodeEnter.append("circle").attr("r", function (d) {
-        return Math.sqrt(d.size) / 10 || 4.5;
+        console.log("d", d);
+        return Math.random() * 20;
       });
-      nodeEnter.append("text").attr("dy", "15px").text(function (d) {
+      nodeEnter.append("text").attr("dy", "30px").text(function (d) {
         return d.language;
       }); // .attr("y", node => node.y + "10px")
 
@@ -680,7 +681,7 @@ async function getServerSideProps() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

@@ -65,10 +65,10 @@ function update() {
       .call(force.drag);
 
   nodeEnter.append("circle")
-      .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; });
+      .attr("r", function(d) { console.log("d", d ); return Math.random() * 20; });
 
   nodeEnter.append("text")
-      .attr("dy", "15px")
+      .attr("dy", "30px")
       .text(function(d) { return d.language; })
       // .attr("y", node => node.y + "10px")
 

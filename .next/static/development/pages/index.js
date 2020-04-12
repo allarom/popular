@@ -65,9 +65,10 @@ var Page = function Page(props) {
       node.exit().remove();
       var nodeEnter = node.enter().append("g").attr("class", "node").on("click", click).call(force.drag);
       nodeEnter.append("circle").attr("r", function (d) {
-        return Math.sqrt(d.size) / 10 || 4.5;
+        console.log("d", d);
+        return Math.random() * 20;
       });
-      nodeEnter.append("text").attr("dy", "15px").text(function (d) {
+      nodeEnter.append("text").attr("dy", "30px").text(function (d) {
         return d.language;
       }); // .attr("y", node => node.y + "10px")
 
@@ -32317,7 +32318,7 @@ var __N_SSP = true;
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************/
@@ -32340,5 +32341,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
