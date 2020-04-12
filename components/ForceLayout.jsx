@@ -12,12 +12,8 @@ const Page = (props) => {
   const wrapperRef = useRef()
   const dimensions = useResizeObserver(wrapperRef)
 	useEffect(() => {
-    console.log(dimensions)
     if(!dimensions) return
     // const svg = select(svgRef.current)
-    if(d3 ) {
-      console.log("d3", d3.layout.force() )
-    }
     var width = dimensions.width,
     height =dimensions.height,
     root;
@@ -199,7 +195,6 @@ return (
       	<svg ref={svgRef} height="100vh"></svg>
     </div>
 		<br/>
-    <h1>Forced Layout</h1>
 	</React.Fragment>
  )
 

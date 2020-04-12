@@ -126,12 +126,7 @@ const Page = props => {
   const wrapperRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
   const dimensions = Object(_hooks_useResizeObeserver__WEBPACK_IMPORTED_MODULE_4__["default"])(wrapperRef);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    console.log(dimensions);
     if (!dimensions) return; // const svg = select(svgRef.current)
-
-    if (d3) {
-      console.log("d3", d3.layout.force());
-    }
 
     var width = dimensions.width,
         height = dimensions.height,
@@ -289,14 +284,14 @@ const Page = props => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 197
+      lineNumber: 193
     },
     __self: undefined
   }, __jsx("div", {
     ref: wrapperRef,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 198
+      lineNumber: 194
     },
     __self: undefined
   }, __jsx("svg", {
@@ -304,22 +299,16 @@ const Page = props => {
     height: "100vh",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 199
+      lineNumber: 195
     },
     __self: undefined
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 201
+      lineNumber: 197
     },
     __self: undefined
-  }), __jsx("h1", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 202
-    },
-    __self: undefined
-  }, "Forced Layout"));
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
@@ -554,6 +543,9 @@ module.exports = JSON.parse("{\"language\":\"Indoeuropean\",\"children\":[{\"lan
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! resize-observer-polyfill */ "resize-observer-polyfill");
+/* harmony import */ var resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 const useResizeObserver = ref => {
@@ -563,7 +555,7 @@ const useResizeObserver = ref => {
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const observeTarget = ref.current;
-    const resizeObserver = new ResizeObserver(entries => {
+    const resizeObserver = new resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_1___default.a(entries => {
       entries.forEach(entry => {
         setDimensions(entry.contentRect);
       });
@@ -763,6 +755,17 @@ module.exports = require("next/head");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "resize-observer-polyfill":
+/*!*******************************************!*\
+  !*** external "resize-observer-polyfill" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("resize-observer-polyfill");
 
 /***/ })
 

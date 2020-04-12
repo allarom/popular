@@ -17,5 +17,8 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-p5-wrapper": "^2.0.0"
+  },
+  "devDependencies": {
+    "resize-observer-polyfill": "^1.5.1"
   }
 }
