@@ -1,0 +1,15 @@
+webpackHotUpdate("static/development/pages/index.js",{
+
+/***/ "./components/lang.json":
+/*!******************************!*\
+  !*** ./components/lang.json ***!
+  \******************************/
+/*! exports provided: language, children, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"language\":\"Indoeuropean\",\"children\":[{\"language\":\"European\",\"children\":[{\"language\":\"Germanic\",\"children\":[{\"language\":\"Northgermanic\",\"children\":[{\"language\":\"Icelandic\"},{\"language\":\"Faroese\"},{\"language\":\"Swedish\"},{\"language\":\"Danish\"},{\"language\":\"Norwegian\"}]},{\"language\":\"Westgermanic\",\"children\":[{\"language\":\"Anglo-frisian\",\"children\":[{\"language\":\"English\"},{\"language\":\"Scots\"},{\"language\":\"Frisian\"}]},{\"language\":\"Low franconian\",\"children\":[{\"language\":\"Afrikaans\"},{\"language\":\"Dutch\"},{\"language\":\"Flemish\"}]},{\"language\":\"High german\",\"children\":[{\"language\":\"Luxemburgish\"},{\"language\":\"Swiss\"},{\"language\":\"Yiddinsh\"},{\"language\":\"Bavarian\"},{\"language\":\"Swabian\"},{\"language\":\"Hunsrik\"},{\"language\":\"German\"},{\"language\":\"Limburg\"},{\"language\":\"Saxon\"},{\"language\":\"Main-Fränkish\"}]}]}]},{\"language\":\"Hellenic\"},{\"language\":\"Armenian\"},{\"language\":\"Romance\"},{\"language\":\"Baltic\"},{\"language\":\"Slavic\"},{\"language\":\"Albanian\"},{\"language\":\"Celtic\"}]},{\"language\":\"Indo-Iranian\",\"children\":[{\"language\":\"Iranian\",\"children\":[{\"language\":\"Persian\"},{\"language\":\"Pashto\"},{\"language\":\"Kurdish\"},{\"language\":\"Baluchi\"},{\"language\":\"Likai\"},{\"language\":\"Hazaragi\"},{\"language\":\"Tajiki\"},{\"language\":\"Luri\"},{\"language\":\"Dimli\"},{\"language\":\"Talysh\"},{\"language\":\"Ossetian\"}]},{\"language\":\"Indo-Aryan\",\"children\":[{\"language\":\"Northwestern zone\",\"children\":[{\"language\":\"Punjabi\"},{\"language\":\"Sindhi\"},{\"language\":\"Cashmiri\"},{\"language\":\"Seraiki\"}]},{\"language\":\"Northern zone\",\"children\":[{\"language\":\"Nepali\"},{\"language\":\"Mahasui\"},{\"language\":\"Kangri\"},{\"language\":\"Dogri\"},{\"language\":\"Kumaoni\"},{\"language\":\"Mandcali\"},{\"language\":\"Garhwali\"}]}]}]}]}");
+
+/***/ })
+
+})
+//# sourceMappingURL=index.js.e5c07a22fd199aaa83cd.hot-update.js.map

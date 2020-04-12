@@ -1,16 +1,24 @@
 import fetch from 'isomorphic-unfetch'
 import Head from 'next/head'
 import HomePage from '../components/HomePage'
+import Page from '../components/Page'
+import ForceLayout from '../components/ForceLayout'
+// import P5Wrapper from 'react-p5-wrapper';
+// import sketch from '../components/sketch';
+
 
 function Home({ searchesMapped }) {
   return (
     <div>
       <Head>
         <title>My page title</title>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
         {/* <meta name="viewport" content="initial-scale=1.0, width=device-width" /> */}
       </Head>
       <div>
-        <HomePage props={searchesMapped} />
+        {/* <HomePage props={searchesMapped} /> */}
+        {/* <Page props={searchesMapped} /> */}
+        <ForceLayout />
       </div>
     </div>
   )
@@ -24,10 +32,19 @@ export async function getServerSideProps() {
     const json = await res.json()
     const searches = json.default.trendingSearchesDays[0].trendingSearches
     const searchesMapped = searches.map((el) => {
+      console.log(el)
       const search = {}
       search.title = el.title.query
-      search.relatedQueries = el.relatedQueries ? el.relatedQueries.map(el => el.query) : []
-      search.traffic = el.formattedTraffic
+      search.children = []
+      el.articles 
+      ? el.articles.map(el => {
+        let title = {}
+        title =  el.title.split(' ')[1];
+        search.children.push({title})
+      })
+      : null
+     
+      // search.traffic = el.formattedTraffic
       return search
     })
   

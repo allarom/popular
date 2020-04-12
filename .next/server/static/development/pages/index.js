@@ -93,6 +93,239 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/ForceLayout.jsx":
+/*!************************************!*\
+  !*** ./components/ForceLayout.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/dynamic */ "next/dynamic");
+/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lang */ "./components/lang.json");
+var _lang__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./lang */ "./components/lang.json", 1);
+/* harmony import */ var d3_force__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! d3-force */ "d3-force");
+/* harmony import */ var d3_force__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(d3_force__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _hooks_useResizeObeserver__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hooks/useResizeObeserver */ "./hooks/useResizeObeserver.jsx");
+var _jsxFileName = "/Users/ar/projects/popular/components/ForceLayout.jsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+ // import { select, hierarchy, tree, linkVertical, forceSimulation, forceCenter,  mouse,  forceX,  forceY, forceCollide, forceRadial} from "d3"
+// import * as d3 from 'd3'
+
+
+
+
+
+const Page = props => {
+  const svgRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+  const wrapperRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+  const dimensions = Object(_hooks_useResizeObeserver__WEBPACK_IMPORTED_MODULE_4__["default"])(wrapperRef);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    console.log(dimensions);
+    if (!dimensions) return; // const svg = select(svgRef.current)
+
+    if (d3) {
+      console.log("d3", d3.layout.force());
+    }
+
+    var width = dimensions.width,
+        height = dimensions.height,
+        root;
+    var force = d3.layout.force().linkDistance(80).charge(-120).gravity(.05).size([width, height]).on("tick", tick); // var svg = d3.select("body").append("svg")
+    //     .attr("width", width)
+    //     .attr("height", height);
+
+    const svg = d3.select(svgRef.current);
+    var link = svg.selectAll(".link"),
+        node = svg.selectAll(".node");
+    root = _lang__WEBPACK_IMPORTED_MODULE_2__;
+    update();
+
+    function update() {
+      var nodes = flatten(root),
+          links = d3.layout.tree().links(nodes); // Restart the force layout.
+
+      force.nodes(nodes).links(links).start(); // Update links.
+
+      link = link.data(links, function (d) {
+        return d.target.id;
+      });
+      link.exit().remove();
+      link.enter().insert("line", ".node").attr("class", "link"); // Update nodes.
+
+      node = node.data(nodes, function (d) {
+        return d.id;
+      });
+      node.exit().remove();
+      var nodeEnter = node.enter().append("g").attr("class", "node").on("click", click).call(force.drag);
+      nodeEnter.append("circle").attr("r", function (d) {
+        return Math.sqrt(d.size) / 10 || 4.5;
+      });
+      nodeEnter.append("text").attr("dy", "15px").text(function (d) {
+        return d.language;
+      }); // .attr("y", node => node.y + "10px")
+
+      node.select("circle").style("fill", color);
+    }
+
+    function tick() {
+      link.attr("x1", function (d) {
+        return d.source.x;
+      }).attr("y1", function (d) {
+        return d.source.y;
+      }).attr("x2", function (d) {
+        return d.target.x;
+      }).attr("y2", function (d) {
+        return d.target.y;
+      });
+      node.attr("transform", function (d) {
+        return "translate(" + d.x + "," + d.y + ")";
+      });
+    }
+
+    function color(d) {
+      return d._children ? "#3182bd" // collapsed package
+      : d.children ? "#c6dbef" // expanded package
+      : "#fd8d3c"; // leaf node
+    } // Toggle children on click.
+
+
+    function click(d) {
+      if (d3.event.defaultPrevented) return; // ignore drag
+
+      if (d.children) {
+        d._children = d.children;
+        d.children = null;
+      } else {
+        d.children = d._children;
+        d._children = null;
+      }
+
+      update();
+    } // Returns a list of all nodes under the root.
+
+
+    function flatten(root) {
+      var nodes = [],
+          i = 0;
+
+      function recurse(node) {
+        if (node.children) node.children.forEach(recurse);
+        if (!node.id) node.id = ++i;
+        nodes.push(node);
+      }
+
+      recurse(root);
+      return nodes;
+    } // const simulation = forceSimulation(nodeData)
+    // // force
+    // .force("center", forceCenter(dimensions.width/2, dimensions.height/2))
+    // .force("charge", forceManyBody().strength(-40))
+    // .force("collide", forceCollide(60))
+    // .on("tick", () => {
+    //   const linkGenerator = linkVertical()
+    //   .x(node => node.x)
+    //   .y(node => node.y + 100)
+    //   svg
+    //   .selectAll(".node")
+    //   .data(nodeData)
+    //   .join("circle")
+    //   .attr("class", "node")
+    //   .attr("r", 5)
+    //   .attr("fill", "grey")
+    //   .attr("cx", node => node.x)
+    //   .attr("cy", node => node.y + 100)
+    //   svg
+    //   .selectAll(".link")
+    //   .data(linkData)
+    //   .join("path").attr("class","link")
+    //   .attr("fill", "none")
+    //   .attr("stroke", "grey")
+    //   .attr("d", linkGenerator)
+    //   .attr("x1", link => link.source.x)
+    //   .attr("y1", link => link.source.y)
+    //   .attr("x2", link => link.target.x)
+    //   .attr("y2", link => link.target.y)
+    //   svg
+    //   .selectAll(".label")
+    //   .data(root.descendants())
+    //   .join("text")
+    //   .attr("class", "label")
+    //   .attr("fill", "black")
+    //   .text(node => node.data.language)
+    //   .attr("font-size", 16)
+    //   .attr("text-anchor", "middle")
+    //   .attr("x", node => node.x)
+    //   .attr("y", node => node.y + 85)
+    // })
+    // svg.on("mousemove", ()=> {
+    //   const [x,y] = mouse(svgRef.current)
+    //   simulation
+    //   .force("x", forceX(x).strength(node => 0.2 + node.depth * 0.15))
+    //   .force("y", forceY(y).strength(node => 0.2 + node.depth * 0.15))
+    // })
+    // svg.on("click", () => {
+    //    const [x, y] = mouse(svgRef.current)
+    //    simulation
+    //    .alpha(0.5)
+    //    .restart()
+    //    .force("orbit", forceRadial(100, x, y))
+    //    svg.selectAll(".orbit")
+    //    .data([json])
+    //    .join("circle")
+    //    .attr("class", "orbit")
+    //    .attr("fill", "none")
+    //    .attr("r", 500)
+    //    .attr("cx", x)
+    //    .attr("cy", y)
+    // })
+
+  }, [_lang__WEBPACK_IMPORTED_MODULE_2__, dimensions]);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 197
+    },
+    __self: undefined
+  }, __jsx("div", {
+    ref: wrapperRef,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 198
+    },
+    __self: undefined
+  }, __jsx("svg", {
+    ref: svgRef,
+    height: "100vh",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 199
+    },
+    __self: undefined
+  })), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 201
+    },
+    __self: undefined
+  }), __jsx("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 202
+    },
+    __self: undefined
+  }, "Forced Layout"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Page);
+
+/***/ }),
+
 /***/ "./components/HomePage.jsx":
 /*!*********************************!*\
   !*** ./components/HomePage.jsx ***!
@@ -228,6 +461,126 @@ const HomePage = props => {
 
 /***/ }),
 
+/***/ "./components/Page.jsx":
+/*!*****************************!*\
+  !*** ./components/Page.jsx ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/dynamic */ "next/dynamic");
+/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! d3 */ "d3");
+/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(d3__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lang */ "./components/lang.json");
+var _lang__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./lang */ "./components/lang.json", 1);
+var _jsxFileName = "/Users/ar/projects/popular/components/Page.jsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+const Page = props => {
+  const svgRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const svg = Object(d3__WEBPACK_IMPORTED_MODULE_2__["select"])(svgRef.current);
+    const root = Object(d3__WEBPACK_IMPORTED_MODULE_2__["hierarchy"])(_lang__WEBPACK_IMPORTED_MODULE_3__);
+    const treeLayout = Object(d3__WEBPACK_IMPORTED_MODULE_2__["tree"])().size([1700, 600]);
+    treeLayout(root);
+    const linkGenerator = Object(d3__WEBPACK_IMPORTED_MODULE_2__["linkVertical"])().x(node => node.x).y(node => node.y + 100);
+    svg.selectAll(".node").data(root.descendants()).join("circle").attr("class", "node").attr("r", 5).attr("fill", "grey").attr("cx", node => node.x).attr("cy", node => node.y + 100);
+    svg.selectAll(".link").data(root.links()).join("path").attr("class", "link").attr("fill", "none").attr("stroke", "grey").attr("d", linkGenerator);
+    svg.selectAll(".label").data(root.descendants()).join("text").attr("class", "label").attr("fill", "black").text(node => node.data.language).attr("font-size", 16).attr("text-anchor", "middle").attr("x", node => node.x).attr("y", node => node.y + 85);
+  }, []);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }, __jsx("svg", {
+    ref: svgRef,
+    width: "2000px",
+    height: "2000px",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: undefined
+  }), __jsx("button", {
+    onClick: () => setData(data.map(value => value + 5)),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: undefined
+  }, "Update"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Page);
+
+/***/ }),
+
+/***/ "./components/lang.json":
+/*!******************************!*\
+  !*** ./components/lang.json ***!
+  \******************************/
+/*! exports provided: language, children, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"language\":\"Indoeuropean\",\"children\":[{\"language\":\"European\",\"children\":[{\"language\":\"Germanic\",\"children\":[{\"language\":\"Northgermanic\",\"children\":[{\"language\":\"Icelandic\"},{\"language\":\"Faroese\"},{\"language\":\"Swedish\"},{\"language\":\"Danish\"},{\"language\":\"Norwegian\"}]},{\"language\":\"Westgermanic\",\"children\":[{\"language\":\"Anglo-frisian\",\"children\":[{\"language\":\"English\"},{\"language\":\"Scots\"},{\"language\":\"Frisian\"}]},{\"language\":\"Low franconian\",\"children\":[{\"language\":\"Afrikaans\"},{\"language\":\"Dutch\"},{\"language\":\"Flemish\"}]},{\"language\":\"High german\",\"children\":[{\"language\":\"Luxemburgish\"},{\"language\":\"Swiss\"},{\"language\":\"Yiddinsh\"},{\"language\":\"Bavarian\"},{\"language\":\"Swabian\"},{\"language\":\"Hunsrik\"},{\"language\":\"German\"},{\"language\":\"Limburg\"},{\"language\":\"Saxon\"},{\"language\":\"Main-Fränkish\"}]}]}]},{\"language\":\"Hellenic\"},{\"language\":\"Armenian\"},{\"language\":\"Romance\"},{\"language\":\"Baltic\"},{\"language\":\"Slavic\"},{\"language\":\"Albanian\"},{\"language\":\"Celtic\"}]},{\"language\":\"Indo-Iranian\",\"children\":[{\"language\":\"Iranian\",\"children\":[{\"language\":\"Persian\"},{\"language\":\"Pashto\"},{\"language\":\"Kurdish\"},{\"language\":\"Baluchi\"},{\"language\":\"Likai\"},{\"language\":\"Hazaragi\"},{\"language\":\"Tajiki\"},{\"language\":\"Luri\"},{\"language\":\"Dimli\"},{\"language\":\"Talysh\"},{\"language\":\"Ossetian\"}]},{\"language\":\"Indo-Aryan\",\"children\":[{\"language\":\"Northwestern zone\",\"children\":[{\"language\":\"Punjabi\"},{\"language\":\"Sindhi\"},{\"language\":\"Cashmiri\"},{\"language\":\"Seraiki\"}]},{\"language\":\"Northern zone\",\"children\":[{\"language\":\"Nepali\"},{\"language\":\"Mahasui\"},{\"language\":\"Kangri\"},{\"language\":\"Dogri\"},{\"language\":\"Kumaoni\"},{\"language\":\"Mandcali\"},{\"language\":\"Garhwali\"}]},{\"language\":\"Eastern zone\",\"children\":[{\"language\":\"Sinhala\"},{\"language\":\"Maldivian\"},{\"language\":\"Bengali assamese\",\"children\":[{\"language\":\"Bengali\"},{\"language\":\"Assamese\"},{\"language\":\"Rangpuri\"},{\"language\":\"Chitta gonian\"}]}]}]}]}]}");
+
+/***/ }),
+
+/***/ "./hooks/useResizeObeserver.jsx":
+/*!**************************************!*\
+  !*** ./hooks/useResizeObeserver.jsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const useResizeObserver = ref => {
+  const {
+    0: dimensions,
+    1: setDimensions
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const observeTarget = ref.current;
+    const resizeObserver = new ResizeObserver(entries => {
+      entries.forEach(entry => {
+        setDimensions(entry.contentRect);
+      });
+      console.log(entries);
+    });
+    resizeObserver.observe(observeTarget);
+    return () => {
+      resizeObserever.unobserve(observeTarget);
+    };
+  }, [ref]);
+  return dimensions;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useResizeObserver);
+
+/***/ }),
+
 /***/ "./pages/index.js":
 /*!************************!*\
   !*** ./pages/index.js ***!
@@ -245,6 +598,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_HomePage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/HomePage */ "./components/HomePage.jsx");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Page */ "./components/Page.jsx");
+/* harmony import */ var _components_ForceLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ForceLayout */ "./components/ForceLayout.jsx");
 var _jsxFileName = "/Users/ar/projects/popular/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -252,38 +607,47 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+ // import P5Wrapper from 'react-p5-wrapper';
+// import sketch from '../components/sketch';
+
 function Home({
   searchesMapped
 }) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 12
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 13
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 14
     },
     __self: this
-  }, "My page title")), __jsx("div", {
+  }, "My page title"), __jsx("script", {
+    src: "https://d3js.org/d3.v3.min.js",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 15
     },
     __self: this
-  }, __jsx(_components_HomePage__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    props: searchesMapped,
+  })), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 18
+    },
+    __self: this
+  }, __jsx(_components_ForceLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
     },
     __self: this
   })));
@@ -297,10 +661,18 @@ async function getServerSideProps() {
     const json = await res.json();
     const searches = json.default.trendingSearchesDays[0].trendingSearches;
     const searchesMapped = searches.map(el => {
+      console.log(el);
       const search = {};
       search.title = el.title.query;
-      search.relatedQueries = el.relatedQueries ? el.relatedQueries.map(el => el.query) : [];
-      search.traffic = el.formattedTraffic;
+      search.children = [];
+      el.articles ? el.articles.map(el => {
+        let title = {};
+        title = el.title.split(' ')[1];
+        search.children.push({
+          title
+        });
+      }) : null; // search.traffic = el.formattedTraffic
+
       return search;
     });
     return {
@@ -328,6 +700,28 @@ module.exports = __webpack_require__(/*! /Users/ar/projects/popular/pages/index.
 
 /***/ }),
 
+/***/ "d3":
+/*!*********************!*\
+  !*** external "d3" ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("d3");
+
+/***/ }),
+
+/***/ "d3-force":
+/*!***************************!*\
+  !*** external "d3-force" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("d3-force");
+
+/***/ }),
+
 /***/ "isomorphic-unfetch":
 /*!*************************************!*\
   !*** external "isomorphic-unfetch" ***!
@@ -336,6 +730,17 @@ module.exports = __webpack_require__(/*! /Users/ar/projects/popular/pages/index.
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+
+/***/ "next/dynamic":
+/*!*******************************!*\
+  !*** external "next/dynamic" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/dynamic");
 
 /***/ }),
 
