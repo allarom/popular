@@ -64,9 +64,10 @@ var Page = function Page(props) {
       });
       node.exit().remove();
       var nodeEnter = node.enter().append("g").attr("class", "node").on("click", click).call(force.drag);
-      nodeEnter.append("circle").attr("r", function (d) {
-        console.log("d", d);
-        return Math.random() * 20;
+      var radiusScale = d3.scale.sqrt().domain([10000, 2600000000000]).range([5, 50]);
+      nodeEnter.append("circle").attr("r", function (node) {
+        console.log(node.speaker);
+        return radiusScale(node.speaker);
       });
       nodeEnter.append("text").attr("dy", "30px").text(function (d) {
         return d.language;
@@ -191,14 +192,14 @@ var Page = function Page(props) {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 193
+      lineNumber: 200
     },
     __self: this
   }, __jsx("div", {
     ref: wrapperRef,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 194
+      lineNumber: 201
     },
     __self: this
   }, __jsx("svg", {
@@ -206,13 +207,13 @@ var Page = function Page(props) {
     height: "100vh",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 195
+      lineNumber: 202
     },
     __self: this
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 197
+      lineNumber: 204
     },
     __self: this
   }));
@@ -451,10 +452,10 @@ var Page = function Page(props) {
 /*!******************************!*\
   !*** ./components/lang.json ***!
   \******************************/
-/*! exports provided: language, children, default */
+/*! exports provided: language, speaker, children, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"language\":\"Indoeuropean\",\"children\":[{\"language\":\"European\",\"children\":[{\"language\":\"Germanic\",\"children\":[{\"language\":\"Northgermanic\",\"children\":[{\"language\":\"Icelandic\"},{\"language\":\"Faroese\"},{\"language\":\"Swedish\"},{\"language\":\"Danish\"},{\"language\":\"Norwegian\"}]},{\"language\":\"Westgermanic\",\"children\":[{\"language\":\"Anglo-frisian\",\"children\":[{\"language\":\"English\"},{\"language\":\"Scots\"},{\"language\":\"Frisian\"}]},{\"language\":\"Low franconian\",\"children\":[{\"language\":\"Afrikaans\"},{\"language\":\"Dutch\"},{\"language\":\"Flemish\"}]},{\"language\":\"High german\",\"children\":[{\"language\":\"Luxemburgish\"},{\"language\":\"Swiss\"},{\"language\":\"Yiddinsh\"},{\"language\":\"Bavarian\"},{\"language\":\"Swabian\"},{\"language\":\"Hunsrik\"},{\"language\":\"German\"},{\"language\":\"Limburg\"},{\"language\":\"Saxon\"},{\"language\":\"Main-Fränkish\"}]}]}]},{\"language\":\"Hellenic\"},{\"language\":\"Armenian\"},{\"language\":\"Romance\"},{\"language\":\"Baltic\"},{\"language\":\"Slavic\"},{\"language\":\"Albanian\"},{\"language\":\"Celtic\"}]},{\"language\":\"Indo-Iranian\",\"children\":[{\"language\":\"Iranian\",\"children\":[{\"language\":\"Persian\"},{\"language\":\"Pashto\"},{\"language\":\"Kurdish\"},{\"language\":\"Baluchi\"},{\"language\":\"Likai\"},{\"language\":\"Hazaragi\"},{\"language\":\"Tajiki\"},{\"language\":\"Luri\"},{\"language\":\"Dimli\"},{\"language\":\"Talysh\"},{\"language\":\"Ossetian\"}]},{\"language\":\"Indo-Aryan\",\"children\":[{\"language\":\"Northwestern zone\",\"children\":[{\"language\":\"Punjabi\"},{\"language\":\"Sindhi\"},{\"language\":\"Cashmiri\"},{\"language\":\"Seraiki\"}]},{\"language\":\"Northern zone\",\"children\":[{\"language\":\"Nepali\"},{\"language\":\"Mahasui\"},{\"language\":\"Kangri\"},{\"language\":\"Dogri\"},{\"language\":\"Kumaoni\"},{\"language\":\"Mandcali\"},{\"language\":\"Garhwali\"}]},{\"language\":\"Eastern zone\",\"children\":[{\"language\":\"Sinhala\"},{\"language\":\"Maldivian\"},{\"language\":\"Bengali assamese\",\"children\":[{\"language\":\"Bengali\"},{\"language\":\"Assamese\"},{\"language\":\"Rangpuri\"},{\"language\":\"Chitta gonian\"}]}]}]}]}]}");
+module.exports = JSON.parse("{\"language\":\"Indoeuropean\",\"speaker\":2600000000000,\"children\":[{\"language\":\"European\",\"speaker\":1100000000000,\"children\":[{\"language\":\"Germanic\",\"speaker\":515000000,\"children\":[{\"language\":\"Northgermanic\",\"speaker\":20000000,\"children\":[{\"language\":\"Icelandic\",\"speaker\":314000},{\"language\":\"Faroese\",\"speaker\":66000},{\"language\":\"Swedish\",\"speaker\":10000000},{\"language\":\"Danish\",\"speaker\":5600000},{\"language\":\"Norwegian\",\"speaker\":5000000}]},{\"language\":\"Westgermanic\",\"speaker\":500000000,\"children\":[{\"language\":\"Anglo-frisian\",\"speaker\":360135000,\"children\":[{\"language\":\"English\",\"speaker\":360000000},{\"language\":\"Scots\",\"speaker\":125000},{\"language\":\"Frisian\",\"speaker\":10000}]},{\"language\":\"Low franconian\",\"speaker\":10000,\"children\":[{\"language\":\"Afrikaans\",\"speaker\":10000},{\"language\":\"Dutch\",\"speaker\":10000},{\"language\":\"Flemish\",\"speaker\":10000}]},{\"language\":\"High german\",\"speaker\":10000,\"children\":[{\"language\":\"Luxemburgish\",\"speaker\":10000},{\"language\":\"Swiss\",\"speaker\":10000},{\"language\":\"Yiddish\",\"speaker\":10000},{\"language\":\"Bavarian\",\"speaker\":10000},{\"language\":\"Swabian\",\"speaker\":10000},{\"language\":\"Hunsrik\",\"speaker\":10000},{\"language\":\"German\",\"speaker\":10000},{\"language\":\"Limburg\",\"speaker\":10000},{\"language\":\"Saxon\",\"speaker\":10000},{\"language\":\"Main-Fränkish\",\"speaker\":10000}]}]}]},{\"language\":\"Hellenic\",\"speaker\":10000},{\"language\":\"Armenian\",\"speaker\":10000},{\"language\":\"Romance\",\"speaker\":10000},{\"language\":\"Baltic\",\"speaker\":10000},{\"language\":\"Slavic\",\"speaker\":315000000},{\"language\":\"Albanian\",\"speaker\":10000},{\"language\":\"Celtic\",\"speaker\":10000}]},{\"language\":\"Indo-Iranian\",\"speaker\":1500000000000,\"children\":[{\"language\":\"Iranian\",\"speaker\":10000,\"children\":[{\"language\":\"Persian\",\"speaker\":10000},{\"language\":\"Pashto\",\"speaker\":10000},{\"language\":\"Kurdish\",\"speaker\":10000},{\"language\":\"Baluchi\",\"speaker\":10000},{\"language\":\"Likai\",\"speaker\":10000},{\"language\":\"Hazaragi\",\"speaker\":10000},{\"language\":\"Tajiki\",\"speaker\":10000},{\"language\":\"Luri\",\"speaker\":10000},{\"language\":\"Dimli\",\"speaker\":10000},{\"language\":\"Talysh\",\"speaker\":10000},{\"language\":\"Ossetian\",\"speaker\":10000}]},{\"language\":\"Indo-Aryan\",\"speaker\":10000,\"children\":[{\"language\":\"Northwestern zone\",\"speaker\":10000,\"children\":[{\"language\":\"Punjabi\",\"speaker\":10000},{\"language\":\"Sindhi\",\"speaker\":10000},{\"language\":\"Cashmiri\",\"speaker\":10000},{\"language\":\"Seraiki\",\"speaker\":10000}]},{\"language\":\"Northern zone\",\"speaker\":10000,\"children\":[{\"language\":\"Nepali\",\"speaker\":10000},{\"language\":\"Mahasui\",\"speaker\":10000},{\"language\":\"Kangri\",\"speaker\":10000},{\"language\":\"Dogri\",\"speaker\":10000},{\"language\":\"Kumaoni\",\"speaker\":10000},{\"language\":\"Mandcali\",\"speaker\":10000},{\"language\":\"Garhwali\",\"speaker\":10000}]},{\"language\":\"Eastern zone\",\"speaker\":10000,\"children\":[{\"language\":\"Sinhala\",\"speaker\":10000},{\"language\":\"Maldivian\",\"speaker\":10000},{\"language\":\"Bengali assamese\",\"speaker\":10000,\"children\":[{\"language\":\"Bengali\",\"speaker\":10000},{\"language\":\"Assamese\",\"speaker\":10000},{\"language\":\"Rangpuri\",\"speaker\":10000},{\"language\":\"Chitta gonian\",\"speaker\":10000}]}]}]}]}]}");
 
 /***/ }),
 
@@ -32318,7 +32319,7 @@ var __N_SSP = true;
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Far%2Fprojects%2Fpopular%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************/
@@ -32341,5 +32342,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

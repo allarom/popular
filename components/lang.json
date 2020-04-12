@@ -1,94 +1,123 @@
 {
  "language" : "Indoeuropean",
+ "speaker": 2600000000000,
  "children" : [{
    "language" : "European",
+    "speaker": 1100000000000,
    "children" : [
      {
       "language" : "Germanic",
+      "speaker": 515000000,
       "children": [
         {
           "language" : "Northgermanic",
+          "speaker": 20000000,
           "children": [
             {
-             "language" : "Icelandic"
+             "language" : "Icelandic",
+             "speaker": 314000
             },
             {
-             "language" : "Faroese"
+             "language" : "Faroese",
+             "speaker": 66000
             },
             {
-             "language" : "Swedish"
+             "language" : "Swedish",
+             "speaker": 10000000
             },
             {
-             "language" : "Danish"
+             "language" : "Danish",
+             "speaker": 5600000
             },
             {
-             "language" : "Norwegian"
+             "language" : "Norwegian",
+             "speaker": 5000000
             }
           ]
         },
         {
           "language" : "Westgermanic",
+          "speaker": 500000000,
           "children" : [
             {
              "language" : "Anglo-frisian",
+             "speaker": 360135000,
              "children": [
               {
-                "language" : "English"
+                "language" : "English",
+                "speaker": 360000000
               },
               {
-                "language" : "Scots"
+                "language" : "Scots",
+                "speaker": 125000
               },
               {
-                "language" : "Frisian"
+                "language" : "Frisian",
+                "speaker": 10000
               }
              ]
             },
             {
              "language" : "Low franconian",
+             "speaker": 10000,
              "children": [
               {
-               "language" : "Afrikaans"
+               "language" : "Afrikaans",
+               "speaker": 10000
               },
               {
-               "language" : "Dutch"
+               "language" : "Dutch",
+               "speaker": 10000
               },
               {
-               "language" : "Flemish"
+               "language" : "Flemish",
+               "speaker": 10000
               }
              ]
             },
             {
              "language" : "High german",
+             "speaker": 10000,
              "children": [
               {
-                "language" : "Luxemburgish"
+                "language" : "Luxemburgish",
+                "speaker": 10000
               },
               {
-                "language" : "Swiss"
+                "language" : "Swiss",
+                "speaker": 10000
               },
               {
-                "language" : "Yiddinsh"
+                "language" : "Yiddish",
+                "speaker": 10000
               },
               {
-                "language" : "Bavarian"
+                "language" : "Bavarian",
+                "speaker": 10000
               },
               {
-                "language" : "Swabian"
+                "language" : "Swabian",
+                "speaker": 10000
               },
               {
-                "language" : "Hunsrik"
+                "language" : "Hunsrik",
+                "speaker": 10000
               },
               {
-                "language" : "German"
+                "language" : "German",
+                "speaker": 10000
               },
               {
-                "language" : "Limburg"
+                "language" : "Limburg",
+                "speaker": 10000
               },
               {
-                "language" : "Saxon"
+                "language" : "Saxon",
+                "speaker": 10000
               },
               {
-                "language" : "Main-Fränkish"
+                "language" : "Main-Fränkish",
+                "speaker": 10000
               }
              ]
             }
@@ -97,137 +126,179 @@
       ]
      },
      {
-      "language" : "Hellenic"
+      "language" : "Hellenic",
+      "speaker": 10000
      },
      {
-      "language" : "Armenian"
+      "language" : "Armenian",
+      "speaker": 10000
      },
      {
-      "language" : "Romance"
+      "language" : "Romance",
+      "speaker": 10000
      },
      {
-      "language" : "Baltic"
+      "language" : "Baltic",
+      "speaker": 10000
      },
      {
-      "language" : "Slavic"
+      "language" : "Slavic",
+      "speaker": 315000000
      },
      {
-      "language" : "Albanian"
+      "language" : "Albanian",
+      "speaker": 10000
      },
      {
-      "language" : "Celtic"
+      "language" : "Celtic",
+      "speaker": 10000
      }
    ]
   },{
    "language" : "Indo-Iranian",
+   "speaker": 1500000000000,
    "children": [
      {
       "language" : "Iranian",
+      "speaker": 10000,
       "children": [
         {
-          "language": "Persian"
+          "language": "Persian",
+          "speaker": 10000
         },
         {
-          "language": "Pashto"
+          "language": "Pashto",
+          "speaker": 10000
         },
         {
-          "language": "Kurdish"
+          "language": "Kurdish",
+          "speaker": 10000
         },
         {
-          "language": "Baluchi"
+          "language": "Baluchi",
+          "speaker": 10000
         },
         {
-          "language": "Likai"
+          "language": "Likai",
+          "speaker": 10000
         },
         {
-          "language": "Hazaragi"
+          "language": "Hazaragi",
+          "speaker": 10000
         },
         {
-          "language": "Tajiki"
+          "language": "Tajiki",
+          "speaker": 10000
         },
         {
-          "language": "Luri"
+          "language": "Luri",
+          "speaker": 10000
         },
         {
-          "language": "Dimli"
+          "language": "Dimli",
+          "speaker": 10000
         },
         {
-          "language": "Talysh"
+          "language": "Talysh",
+          "speaker": 10000
         },
         {
-          "language": "Ossetian"
+          "language": "Ossetian",
+          "speaker": 10000
         }
       ]
      },
      {
       "language" : "Indo-Aryan",
+      "speaker": 10000,
       "children": [
         {
           "language": "Northwestern zone",
+          "speaker": 10000,
           "children": [
             {
-              "language": "Punjabi"
+              "language": "Punjabi",
+              "speaker": 10000
             },
             {
-              "language": "Sindhi"
+              "language": "Sindhi",
+              "speaker": 10000
             },
             {
-              "language": "Cashmiri"
+              "language": "Cashmiri",
+              "speaker": 10000
             },
             {
-              "language": "Seraiki"
+              "language": "Seraiki",
+              "speaker": 10000
             }
           ]
         }, 
         {
           "language": "Northern zone",
+          "speaker": 10000,
           "children": [
             {
-              "language": "Nepali"
+              "language": "Nepali",
+              "speaker": 10000
             },
             {
-              "language": "Mahasui"
+              "language": "Mahasui",
+              "speaker": 10000
             },
             {
-              "language": "Kangri"
+              "language": "Kangri",
+              "speaker": 10000
             },
             {
-              "language": "Dogri"
+              "language": "Dogri",
+              "speaker": 10000
             },
             {
-              "language": "Kumaoni"
+              "language": "Kumaoni",
+              "speaker": 10000
             },
             {
-              "language": "Mandcali"
+              "language": "Mandcali",
+              "speaker": 10000
             },
             {
-              "language": "Garhwali"
+              "language": "Garhwali",
+              "speaker": 10000
             }
           ]
         },
         {
           "language": "Eastern zone",
+          "speaker": 10000,
           "children": [
             {
-              "language": "Sinhala"
+              "language": "Sinhala",
+              "speaker": 10000
             },
             {
-              "language": "Maldivian"
+              "language": "Maldivian",
+              "speaker": 10000
             },
             {
               "language": "Bengali assamese",
+              "speaker": 10000,
               "children": [
                 {
-                  "language": "Bengali"
+                  "language": "Bengali",
+                  "speaker": 10000
                 },
                 {
-                  "language": "Assamese"
+                  "language": "Assamese",
+                  "speaker": 10000
                 },
                 {
-                  "language": "Rangpuri"
+                  "language": "Rangpuri",
+                  "speaker": 10000
                 },
                 {
-                  "language": "Chitta gonian"
+                  "language": "Chitta gonian",
+                  "speaker": 10000
                 }
               ]
             }

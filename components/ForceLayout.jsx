@@ -64,8 +64,15 @@ function update() {
       .on("click", click)
       .call(force.drag);
 
+ let radiusScale = d3.scale.sqrt()
+ .domain([10000, 2600000000000])
+ .range([5, 50]);
+
   nodeEnter.append("circle")
-      .attr("r", function(d) { console.log("d", d ); return Math.random() * 20; });
+      .attr("r", node => {
+        console.log(node.speaker)
+        return radiusScale(node.speaker)
+      });
 
   nodeEnter.append("text")
       .attr("dy", "30px")
