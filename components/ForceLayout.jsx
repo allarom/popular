@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react'
 import dynamic from 'next/dynamic'
-// import { select, hierarchy, tree, linkVertical, forceSimulation, forceCenter,  mouse,  forceX,  forceY, forceCollide, forceRadial} from "d3"
+// import { select, hierarchy, tree, linkVertical, forceSimulation, forceCenter,  mouse,  forceX,  forceY, forceCollide, forceRadial, scaleSqrt} from "d3"
 // import * as d3 from 'd3'
 import json from './lang'
 import { forceManyBody, force } from 'd3-force';
@@ -19,7 +19,7 @@ const Page = (props) => {
     root;
 
 var force = d3.layout.force()
-    .linkDistance(80)
+    .linkDistance(100)
     .charge(-120)
     .gravity(.05)
     .size([width, height])
@@ -64,15 +64,12 @@ function update() {
       .on("click", click)
       .call(force.drag);
 
- let radiusScale = d3.scale.sqrt()
+ let radiusScale = d3.scale.log()
  .domain([10000, 2600000000000])
  .range([5, 50]);
 
   nodeEnter.append("circle")
-      .attr("r", node => {
-        console.log(node.speaker)
-        return radiusScale(node.speaker)
-      });
+      .attr("r", node => radiusScale(node.speaker));
 
   nodeEnter.append("text")
       .attr("dy", "30px")

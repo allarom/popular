@@ -114,7 +114,7 @@ var _lang__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_requir
 var _jsxFileName = "/Users/ar/projects/popular/components/ForceLayout.jsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
- // import { select, hierarchy, tree, linkVertical, forceSimulation, forceCenter,  mouse,  forceX,  forceY, forceCollide, forceRadial} from "d3"
+ // import { select, hierarchy, tree, linkVertical, forceSimulation, forceCenter,  mouse,  forceX,  forceY, forceCollide, forceRadial, scaleSqrt} from "d3"
 // import * as d3 from 'd3'
 
 
@@ -131,7 +131,7 @@ const Page = props => {
     var width = dimensions.width,
         height = dimensions.height,
         root;
-    var force = d3.layout.force().linkDistance(80).charge(-120).gravity(.05).size([width, height]).on("tick", tick); // var svg = d3.select("body").append("svg")
+    var force = d3.layout.force().linkDistance(100).charge(-120).gravity(.05).size([width, height]).on("tick", tick); // var svg = d3.select("body").append("svg")
     //     .attr("width", width)
     //     .attr("height", height);
 
@@ -158,11 +158,8 @@ const Page = props => {
       });
       node.exit().remove();
       var nodeEnter = node.enter().append("g").attr("class", "node").on("click", click).call(force.drag);
-      let radiusScale = d3.scale.sqrt().domain([10000, 2600000000000]).range([5, 50]);
-      nodeEnter.append("circle").attr("r", node => {
-        console.log(node.speaker);
-        return radiusScale(node.speaker);
-      });
+      let radiusScale = d3.scale.log().domain([10000, 2600000000000]).range([5, 50]);
+      nodeEnter.append("circle").attr("r", node => radiusScale(node.speaker));
       nodeEnter.append("text").attr("dy", "30px").text(function (d) {
         return d.language;
       }); // .attr("y", node => node.y + "10px")
@@ -286,14 +283,14 @@ const Page = props => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 200
+      lineNumber: 197
     },
     __self: undefined
   }, __jsx("div", {
     ref: wrapperRef,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 201
+      lineNumber: 198
     },
     __self: undefined
   }, __jsx("svg", {
@@ -301,13 +298,13 @@ const Page = props => {
     height: "100vh",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 202
+      lineNumber: 199
     },
     __self: undefined
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 204
+      lineNumber: 201
     },
     __self: undefined
   }));
