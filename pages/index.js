@@ -16,8 +16,10 @@ function Home({ searchesMapped }) {
         {/* <meta name="viewport" content="initial-scale=1.0, width=device-width" /> */}
       </Head>
       <div>
+        <div>{searchesMapped[0].title}</div>
         {/* <HomePage props={searchesMapped} /> */}
         {/* <Page props={searchesMapped} /> */}
+
         <ForceLayout />
       </div>
     </div>

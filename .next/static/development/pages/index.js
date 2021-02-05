@@ -37,7 +37,13 @@ var Page = function Page(props) {
     var width = dimensions.width,
         height = dimensions.height,
         root;
-    var force = d3.layout.force().linkDistance(100).charge(-120).gravity(.05).size([width, height]).on("tick", tick); // var svg = d3.select("body").append("svg")
+    var getRadius = d3.scale.log().domain([10000, 2600000000000]).range([5, 50]);
+
+    function linkDistance(d) {
+      return getRadius(d.source.speaker) * 2;
+    }
+
+    var force = d3.layout.force().linkDistance(linkDistance).charge(-120).gravity(.05).size([width, height]).on("tick", tick); // var svg = d3.select("body").append("svg")
     //     .attr("width", width)
     //     .attr("height", height);
 
@@ -66,7 +72,9 @@ var Page = function Page(props) {
       var nodeEnter = node.enter().append("g").attr("class", "node").on("click", click).call(force.drag);
       var radiusScale = d3.scale.log().domain([10000, 2600000000000]).range([5, 50]);
       nodeEnter.append("circle").attr("r", function (node) {
-        return radiusScale(node.speaker);
+        // getLink(node.speaker)
+        var scale = radiusScale(node.speaker);
+        return scale;
       });
       nodeEnter.append("text").attr("dy", "30px").text(function (d) {
         return d.language;
@@ -191,14 +199,14 @@ var Page = function Page(props) {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 197
+      lineNumber: 209
     },
     __self: this
   }, __jsx("div", {
     ref: wrapperRef,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 198
+      lineNumber: 210
     },
     __self: this
   }, __jsx("svg", {
@@ -206,13 +214,13 @@ var Page = function Page(props) {
     height: "100vh",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 199
+      lineNumber: 211
     },
     __self: this
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 201
+      lineNumber: 213
     },
     __self: this
   }));

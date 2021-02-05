@@ -1,0 +1,1 @@
+canvas{width:100%}#root{display:flex;flex-direction:column;align-items:stretch;justify-content:center;height:100vh}svg{width:100%;display:block;overflow:visible}.node circle{cursor:pointer;stroke:#3182bd;stroke-width:1.5px}.node text{font:10px sans-serif;pointer-events:none;text-anchor:middle}line.link{fill:none;stroke:#9ecae1;stroke-width:1.5px}

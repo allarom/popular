@@ -15,11 +15,19 @@ const Page = (props) => {
     if(!dimensions) return
     // const svg = select(svgRef.current)
     var width = dimensions.width,
-    height =dimensions.height,
+    height = dimensions.height,
     root;
 
+const getRadius = d3.scale.log()
+.domain([10000, 2600000000000])
+.range([5, 50])
+  
+function linkDistance(d) {
+  return getRadius(d.source.speaker) * 2
+}
+      
 var force = d3.layout.force()
-    .linkDistance(100)
+    .linkDistance(linkDistance)
     .charge(-120)
     .gravity(.05)
     .size([width, height])
@@ -35,12 +43,11 @@ var link = svg.selectAll(".link"),
 root = json;
 update();
 
-
 function update() {
   var nodes = flatten(root),
       links = d3.layout.tree().links(nodes);
-
   // Restart the force layout.
+
   force
       .nodes(nodes)
       .links(links)
@@ -69,7 +76,12 @@ function update() {
  .range([5, 50]);
 
   nodeEnter.append("circle")
-      .attr("r", node => radiusScale(node.speaker));
+      .attr("r", node => {
+      // getLink(node.speaker)
+      let scale = radiusScale(node.speaker)
+      return scale
+     }
+    );
 
   nodeEnter.append("text")
       .attr("dy", "30px")
